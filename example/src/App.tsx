@@ -1,18 +1,22 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-toggle';
+import { StyleSheet, Switch, Text, View } from 'react-native'
+import { Toggle } from 'react-native-toggle'
+import { delay } from './utils/Tools'
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+  const [loading, setLoading] = React.useState(false)
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Toggle onPress={() => {
+        setLoading(true)
+        delay(2000).then(() => setLoading(false));
+      }} isLoading={loading} useReactNativeSwitch={false} showLoadingIndicator={false} />
+      <Toggle onPress={() => {
+        setLoading(true)
+        delay(2000).then(() => setLoading(false));
+      }} isLoading={loading} useReactNativeSwitch={true} showLoadingIndicator={false} />
     </View>
   );
 }
