@@ -12,11 +12,19 @@ export default function App() {
       <Toggle onPress={() => {
         setLoading(true)
         delay(2000).then(() => setLoading(false));
-      }} isLoading={loading} useReactNativeSwitch={false} showLoadingIndicator={false} />
-      <Toggle onPress={() => {
+      }} isLoading={loading}
+        useReactNativeSwitch={false}
+        showLoadingIndicator={false}
+        customToggleWidth={70}
+      />
+
+      {/* <Toggle onPress={() => {
         setLoading(true)
         delay(2000).then(() => setLoading(false));
-      }} isLoading={loading} useReactNativeSwitch={true} showLoadingIndicator={false} />
+      }}
+        isLoading={loading}
+        useReactNativeSwitch={true}
+        showLoadingIndicator={true} /> */}
     </View>
   );
 }

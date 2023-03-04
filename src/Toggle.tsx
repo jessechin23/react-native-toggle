@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Animated, StyleSheet, Text, TouchableOpacity, Pressable, View, I18nManager, Switch } from 'react-native'
+import { Animated, StyleSheet, Text, TouchableOpacity, Pressable, View, I18nManager, Switch, Easing, ActivityIndicator } from 'react-native'
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback'
 import Lottie from 'lottie-react-native'
 import { delay } from '../example/src/utils/Tools'
@@ -55,7 +55,6 @@ function Toggle(props: ToggleProps): React.ReactElement {
     }
     // #endregion
 
-
     const toggleHandle = () => {
         // setLoad(true)
         // delay(2000).then(() => setLoad(false));
@@ -100,7 +99,8 @@ function Toggle(props: ToggleProps): React.ReactElement {
         return (
             <Pressable
                 // activeOpacity={1}
-                onLongPress={() => console.log('long pressed')}
+                // onLongPress={onToggleLongPressed}
+                // onPressIn={onToggleLongPressed}
                 onPressOut={toggleHandle}
             >
                 <Animated.View style={[{ ...styles.background, ...animatedStyle }, {
@@ -109,11 +109,11 @@ function Toggle(props: ToggleProps): React.ReactElement {
                     backgroundColor: status ? onColor : offColor
                 }]}>
 
-                    <Text style={{ color: textColor, position: 'absolute', marginLeft: status ? 5 : 32, marginTop: 7 }}>{status ? onText : offText}</Text>
+                    <Text style={{ color: textColor, position: 'absolute', marginLeft: status ? 6 : customToggleWidth - 26, marginTop: 8 }}>{status ? onText : offText}</Text>
                     {/* <Text style={{ color: textColor, position: 'absolute', marginLeft: 32, marginTop: 7 }}>{offText}</Text> */}
-                    <Animated.View style={[styles.toggle, {
+                    <Animated.View style={[{ ...styles.toggle }, {
                         transform: [{
-                            translateX: status ? 25 : 0,
+                            translateX: status ? customToggleWidth - 28 - 4 : 0,
                         }],
                         backgroundColor: circleColor
                     }]} />
@@ -132,7 +132,9 @@ function Toggle(props: ToggleProps): React.ReactElement {
 
     return (
         <View>
-            {showLoadingIndicator && props.isLoading && <Lottie style={{ height: 25 }} source={require("./assets/loading.json")} autoPlay loop />}
+
+            {/* {showLoadingIndicator && props.isLoading && <Lottie style={{ height: 25 }} source={require("./assets/loading.json")} autoPlay loop />} */}
+            {showLoadingIndicator && props.isLoading && <ActivityIndicator size={'small'} />}
             {(!showLoadingIndicator || (showLoadingIndicator && !props.isLoading)) && renderSwitch()
             }
         </View>
