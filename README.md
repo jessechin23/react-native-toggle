@@ -1,5 +1,9 @@
 # react-native-toggle
 
+**** work in progress ****
+
+The goal of this project is to create a customisable toggle button with loading animation when the app is waiting for an API response.  With a iOS-like toggle animation.
+
 Customisable toggle switch for React Native
 
 ## Installation
@@ -11,11 +15,15 @@ npm install react-native-toggle
 ## Usage
 
 ```js
-import { multiply } from 'react-native-toggle';
+import { Toggle } from 'react-native-toggle';
 
 // ...
 
-const result = await multiply(3, 7);
+<Toggle onPress={() => { }} 
+    isLoading={loading}
+    useReactNativeSwitch={false}
+    showLoadingIndicator={true}
+/>
 ```
 
 ## Contributing
